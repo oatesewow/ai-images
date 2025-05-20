@@ -7,6 +7,8 @@ from PIL import Image
 import numpy as np
 import tempfile
 import gc
+import threading
+import time
 
 # Set page config
 st.set_page_config(layout="wide", page_title="Image Variant Review Tool")
@@ -22,9 +24,16 @@ if 'current_df' not in st.session_state:
     st.session_state.current_df = None
 if 'results_count' not in st.session_state:
     st.session_state.results_count = {'approved': 0, 'rejected': 0, 'regenerate': 0, 'pending': 0}
+if 'preloaded_images' not in st.session_state:
+    st.session_state.preloaded_images = {}
+if 'preload_lock' not in st.session_state:
+    st.session_state.preload_lock = threading.Lock()
+
+# Number of images to preload
+PRELOAD_COUNT = 3
 
 # Function to load an image from URL with memory optimization
-@st.cache_data(ttl=300, max_entries=20)
+@st.cache_data(ttl=300, max_entries=30)
 def load_image_from_url(url):
     try:
         response = requests.get(url, timeout=10)
@@ -43,6 +52,61 @@ def load_image_from_url(url):
     except Exception as e:
         st.error(f"Error loading image: {str(e)}")
         return None
+
+# Preload images in the background
+def preload_images(df, filtered_indices, current_index, count=PRELOAD_COUNT):
+    # Don't tie up main thread, run in background
+    threading.Thread(target=_preload_images_thread, 
+                     args=(df, filtered_indices, current_index, count), 
+                     daemon=True).start()
+
+def _preload_images_thread(df, filtered_indices, current_index, count):
+    with st.session_state.preload_lock:
+        try:
+            total = len(filtered_indices)
+            preloaded = 0
+            
+            # Preload next items
+            for i in range(current_index, min(current_index + count, total)):
+                if i >= total:
+                    break
+                    
+                idx = filtered_indices[i]
+                row = df.iloc[idx]
+                
+                # Check if we have the original image URL
+                if 'image_url_pos_0' in row and row['image_url_pos_0']:
+                    url = row['image_url_pos_0']
+                    if url not in st.session_state.preloaded_images:
+                        # Load and store in session state
+                        img = load_image_from_url(url)
+                        if img is not None:
+                            st.session_state.preloaded_images[url] = "loaded"
+                            preloaded += 1
+                
+                # Check if we have the variant image URL
+                if 's3_url' in row and row['s3_url']:
+                    url = row['s3_url']
+                    if url not in st.session_state.preloaded_images:
+                        # Load and store in session state
+                        img = load_image_from_url(url)
+                        if img is not None:
+                            st.session_state.preloaded_images[url] = "loaded"
+                            preloaded += 1
+                            
+            # Clean up old preloaded images to avoid memory bloat
+            if len(st.session_state.preloaded_images) > 20:
+                # Keep only 10 most recent
+                keys_to_keep = list(st.session_state.preloaded_images.keys())[-10:]
+                new_preloaded = {}
+                for key in keys_to_keep:
+                    new_preloaded[key] = st.session_state.preloaded_images[key]
+                st.session_state.preloaded_images = new_preloaded
+                
+        except Exception as e:
+            # Don't crash the app if preloading fails
+            print(f"Error preloading images: {str(e)}")
+            pass
 
 # Load the data with chunking for large files
 @st.cache_data(ttl=60)
@@ -240,6 +304,9 @@ def main():
                     if 'revenue_last_14_days' in row:
                         st.write(f"**Revenue (14 days):** £{row['revenue_last_14_days']}")
                 
+                # Preload next images in the background
+                preload_images(df, filtered_indices, st.session_state.item_index)
+                
                 # Create columns for images
                 col1, col2 = st.columns(2)
                 
@@ -247,7 +314,10 @@ def main():
                 with col1:
                     st.subheader("Current Image")
                     if 'image_url_pos_0' in row and row['image_url_pos_0']:
-                        img = load_image_from_url(row['image_url_pos_0'])
+                        with st.spinner("Loading original image..."):
+                            img = load_image_from_url(row['image_url_pos_0'])
+                            if row['image_url_pos_0'] not in st.session_state.preloaded_images:
+                                st.session_state.preloaded_images[row['image_url_pos_0']] = "loaded"
                         if img:
                             # Use smaller image to reduce memory
                             st.image(img, use_column_width=True)
@@ -260,7 +330,10 @@ def main():
                 with col2:
                     st.subheader("Variant Image")
                     if 's3_url' in row and row['s3_url']:
-                        img = load_image_from_url(row['s3_url'])
+                        with st.spinner("Loading variant image..."):
+                            img = load_image_from_url(row['s3_url'])
+                            if row['s3_url'] not in st.session_state.preloaded_images:
+                                st.session_state.preloaded_images[row['s3_url']] = "loaded"
                         if img:
                             # Use smaller image to reduce memory
                             st.image(img, use_column_width=True)
@@ -358,6 +431,14 @@ def main():
                 st.sidebar.write(f"Regenerate: {st.session_state.results_count['regenerate']}")
                 st.sidebar.write(f"Pending: {st.session_state.results_count['pending']}")
                 
+                # Preloading status
+                preloaded_count = len(st.session_state.preloaded_images)
+                st.sidebar.divider()
+                st.sidebar.markdown(f"### Image Preloading")
+                st.sidebar.write(f"Preloaded images: {preloaded_count}")
+                if st.sidebar.button("Force Preload Next"):
+                    preload_images(df, filtered_indices, st.session_state.item_index, count=5)
+                
                 # Download the updated CSV
                 csv = df.to_csv(index=False).encode('utf-8')
                 
@@ -380,6 +461,7 @@ def main():
                 st.sidebar.markdown("### Memory Usage")
                 if st.sidebar.button("Clear Cache"):
                     st.cache_data.clear()
+                    st.session_state.preloaded_images = {}
                     st.rerun()
                 
             else:
