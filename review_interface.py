@@ -7,8 +7,8 @@ from PIL import Image
 import numpy as np
 import tempfile
 import gc
-import threading
 import time
+from functools import lru_cache
 
 # Set page config
 st.set_page_config(layout="wide", page_title="Image Variant Review Tool")
@@ -26,14 +26,16 @@ if 'results_count' not in st.session_state:
     st.session_state.results_count = {'approved': 0, 'rejected': 0, 'regenerate': 0, 'pending': 0}
 if 'preloaded_images' not in st.session_state:
     st.session_state.preloaded_images = {}
-if 'preload_lock' not in st.session_state:
-    st.session_state.preload_lock = threading.Lock()
+if 'next_item_preloaded' not in st.session_state:
+    st.session_state.next_item_preloaded = False
+if 'last_action_time' not in st.session_state:
+    st.session_state.last_action_time = time.time()
 
 # Number of images to preload
-PRELOAD_COUNT = 3
+PRELOAD_COUNT = 5
 
 # Function to load an image from URL with memory optimization
-@st.cache_data(ttl=300, max_entries=30)
+@st.cache_data(ttl=300, max_entries=50)
 def load_image_from_url(url):
     try:
         response = requests.get(url, timeout=10)
@@ -53,60 +55,99 @@ def load_image_from_url(url):
         st.error(f"Error loading image: {str(e)}")
         return None
 
-# Preload images in the background
-def preload_images(df, filtered_indices, current_index, count=PRELOAD_COUNT):
-    # Don't tie up main thread, run in background
-    threading.Thread(target=_preload_images_thread, 
-                     args=(df, filtered_indices, current_index, count), 
-                     daemon=True).start()
+# Version of load_image that doesn't use streamlit cache for prefetching
+@lru_cache(maxsize=20)
+def prefetch_image(url):
+    try:
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            img = Image.open(BytesIO(response.content))
+            if img.mode == 'RGBA':
+                img = img.convert('RGB')
+            if max(img.size) > 1200:
+                img.thumbnail((1200, 1200), Image.LANCZOS)
+            # Just return True to indicate success
+            return True
+        return False
+    except:
+        return False
 
-def _preload_images_thread(df, filtered_indices, current_index, count):
-    with st.session_state.preload_lock:
-        try:
-            total = len(filtered_indices)
-            preloaded = 0
+# Preload images without using threading to avoid session state issues
+def preload_images(df, filtered_indices, current_index, count=PRELOAD_COUNT):
+    try:
+        total = len(filtered_indices)
+        preloaded = 0
+        urls_to_preload = []
+        
+        # Collect URLs to preload
+        for i in range(current_index, min(current_index + count, total)):
+            if i >= total:
+                break
+                
+            idx = filtered_indices[i]
+            row = df.iloc[idx]
             
-            # Preload next items
-            for i in range(current_index, min(current_index + count, total)):
-                if i >= total:
-                    break
+            # Check if we have the original image URL
+            if 'image_url_pos_0' in row and row['image_url_pos_0']:
+                url = row['image_url_pos_0']
+                if url not in st.session_state.preloaded_images:
+                    urls_to_preload.append(url)
+            
+            # Check if we have the variant image URL
+            if 's3_url' in row and row['s3_url']:
+                url = row['s3_url']
+                if url not in st.session_state.preloaded_images:
+                    urls_to_preload.append(url)
+        
+        # Preload the most imminent images first (next item)
+        if current_index < total:
+            next_idx = filtered_indices[current_index]
+            next_row = df.iloc[next_idx]
+            
+            if 'image_url_pos_0' in next_row and next_row['image_url_pos_0']:
+                url = next_row['image_url_pos_0']
+                # Use the streamlit cache version for immediate next
+                img = load_image_from_url(url)
+                if img is not None:
+                    st.session_state.preloaded_images[url] = "loaded"
+                    preloaded += 1
+            
+            if 's3_url' in next_row and next_row['s3_url']:
+                url = next_row['s3_url']
+                # Use the streamlit cache version for immediate next
+                img = load_image_from_url(url)
+                if img is not None:
+                    st.session_state.preloaded_images[url] = "loaded"
+                    preloaded += 1
+            
+            # Mark that we've preloaded the next item
+            st.session_state.next_item_preloaded = True
+            
+        # For the rest, use prefetch which won't block or cause session issues
+        for url in urls_to_preload:
+            if url not in st.session_state.preloaded_images:
+                # Just mark as preloaded - we've initiated the fetch
+                st.session_state.preloaded_images[url] = "prefetched"
+                # Call the prefetch function - this doesn't return the image
+                # but primes the cache
+                prefetch_image(url)
+                preloaded += 1
                     
-                idx = filtered_indices[i]
-                row = df.iloc[idx]
-                
-                # Check if we have the original image URL
-                if 'image_url_pos_0' in row and row['image_url_pos_0']:
-                    url = row['image_url_pos_0']
-                    if url not in st.session_state.preloaded_images:
-                        # Load and store in session state
-                        img = load_image_from_url(url)
-                        if img is not None:
-                            st.session_state.preloaded_images[url] = "loaded"
-                            preloaded += 1
-                
-                # Check if we have the variant image URL
-                if 's3_url' in row and row['s3_url']:
-                    url = row['s3_url']
-                    if url not in st.session_state.preloaded_images:
-                        # Load and store in session state
-                        img = load_image_from_url(url)
-                        if img is not None:
-                            st.session_state.preloaded_images[url] = "loaded"
-                            preloaded += 1
-                            
-            # Clean up old preloaded images to avoid memory bloat
-            if len(st.session_state.preloaded_images) > 20:
-                # Keep only 10 most recent
-                keys_to_keep = list(st.session_state.preloaded_images.keys())[-10:]
-                new_preloaded = {}
-                for key in keys_to_keep:
-                    new_preloaded[key] = st.session_state.preloaded_images[key]
-                st.session_state.preloaded_images = new_preloaded
-                
-        except Exception as e:
-            # Don't crash the app if preloading fails
-            print(f"Error preloading images: {str(e)}")
-            pass
+        # Clean up old preloaded images to avoid memory bloat
+        if len(st.session_state.preloaded_images) > 30:
+            # Keep only the most recent
+            keys_to_keep = list(st.session_state.preloaded_images.keys())[-20:]
+            new_preloaded = {}
+            for key in keys_to_keep:
+                new_preloaded[key] = st.session_state.preloaded_images[key]
+            st.session_state.preloaded_images = new_preloaded
+            
+        return preloaded
+            
+    except Exception as e:
+        # Don't crash the app if preloading fails
+        print(f"Error preloading images: {str(e)}")
+        return 0
 
 # Load the data with chunking for large files
 @st.cache_data(ttl=60)
@@ -175,17 +216,39 @@ def save_data(df, file_path=None, row_index=None, result=None, notes=None):
     return df
 
 # Navigation functions
-def go_to_next():
-    st.session_state.item_index += 1
+def go_to_next(increment=1):
+    st.session_state.item_index += increment
+    st.session_state.next_item_preloaded = False  # Reset preload flag
+    st.session_state.last_action_time = time.time()
     
-def go_to_previous():
-    st.session_state.item_index -= 1
+def go_to_previous(decrement=1):
+    st.session_state.item_index -= decrement
+    st.session_state.next_item_preloaded = False  # Reset preload flag
+    st.session_state.last_action_time = time.time()
 
 # Clear image cache to prevent memory issues
 def clear_image_cache():
     # Clear the cache for the load_image_from_url function
     load_image_from_url.clear()
     gc.collect()
+
+# Handle review result
+def handle_review(df, original_index, result, use_local_file, local_file_path, total_filtered):
+    # Update dataframe
+    df.loc[original_index, 'review_result'] = result
+    
+    # Save data
+    if use_local_file:
+        df = save_data(df, local_file_path, original_index, result)
+    else:
+        df = save_data(df, row_index=original_index, result=result)
+    
+    # Reset preload flag
+    st.session_state.next_item_preloaded = False
+    
+    # Go to next item if not at the end
+    if st.session_state.item_index < total_filtered:
+        go_to_next()
 
 # Main function
 def main():
@@ -304,8 +367,10 @@ def main():
                     if 'revenue_last_14_days' in row:
                         st.write(f"**Revenue (14 days):** £{row['revenue_last_14_days']}")
                 
-                # Preload next images in the background
-                preload_images(df, filtered_indices, st.session_state.item_index)
+                # If not already preloaded, start preloading now
+                if not st.session_state.next_item_preloaded and time.time() - st.session_state.last_action_time > 0.5:
+                    # Don't preload immediately after an action to avoid session state issues
+                    preload_count = preload_images(df, filtered_indices, st.session_state.item_index)
                 
                 # Create columns for images
                 col1, col2 = st.columns(2)
@@ -314,10 +379,13 @@ def main():
                 with col1:
                     st.subheader("Current Image")
                     if 'image_url_pos_0' in row and row['image_url_pos_0']:
-                        with st.spinner("Loading original image..."):
-                            img = load_image_from_url(row['image_url_pos_0'])
-                            if row['image_url_pos_0'] not in st.session_state.preloaded_images:
-                                st.session_state.preloaded_images[row['image_url_pos_0']] = "loaded"
+                        current_url = row['image_url_pos_0']
+                        is_preloaded = current_url in st.session_state.preloaded_images
+                        
+                        img = load_image_from_url(current_url)
+                        if not is_preloaded:
+                            st.session_state.preloaded_images[current_url] = "loaded"
+                            
                         if img:
                             # Use smaller image to reduce memory
                             st.image(img, use_column_width=True)
@@ -330,10 +398,13 @@ def main():
                 with col2:
                     st.subheader("Variant Image")
                     if 's3_url' in row and row['s3_url']:
-                        with st.spinner("Loading variant image..."):
-                            img = load_image_from_url(row['s3_url'])
-                            if row['s3_url'] not in st.session_state.preloaded_images:
-                                st.session_state.preloaded_images[row['s3_url']] = "loaded"
+                        variant_url = row['s3_url']
+                        is_preloaded = variant_url in st.session_state.preloaded_images
+                        
+                        img = load_image_from_url(variant_url)
+                        if not is_preloaded:
+                            st.session_state.preloaded_images[variant_url] = "loaded"
+                            
                         if img:
                             # Use smaller image to reduce memory
                             st.image(img, use_column_width=True)
@@ -354,44 +425,18 @@ def main():
                 
                 with btn_col1:
                     if st.button("Approve", key="approve", type="primary"):
-                        df.loc[original_index, 'review_result'] = "approved"
-                        if use_local_file:
-                            df = save_data(df, local_file_path, original_index, "approved")
-                        else:
-                            df = save_data(df, row_index=original_index, result="approved")
-                        # Clear image cache to free memory
-                        clear_image_cache()
-                        # Go to next item if not at the end
-                        if st.session_state.item_index < total_filtered:
-                            go_to_next()
+                        # Use a function instead of inline code to improve transitions
+                        handle_review(df, original_index, "approved", use_local_file, local_file_path, total_filtered)
                         st.rerun()
                 
                 with btn_col2:
                     if st.button("Reject", key="reject"):
-                        df.loc[original_index, 'review_result'] = "rejected"
-                        if use_local_file:
-                            df = save_data(df, local_file_path, original_index, "rejected")
-                        else:
-                            df = save_data(df, row_index=original_index, result="rejected")
-                        # Clear image cache to free memory
-                        clear_image_cache()
-                        # Go to next item if not at the end
-                        if st.session_state.item_index < total_filtered:
-                            go_to_next()
+                        handle_review(df, original_index, "rejected", use_local_file, local_file_path, total_filtered) 
                         st.rerun()
                 
                 with btn_col3:
                     if st.button("Regenerate", key="regenerate"):
-                        df.loc[original_index, 'review_result'] = "regenerate"
-                        if use_local_file:
-                            df = save_data(df, local_file_path, original_index, "regenerate")
-                        else:
-                            df = save_data(df, row_index=original_index, result="regenerate")
-                        # Clear image cache to free memory
-                        clear_image_cache()
-                        # Go to next item if not at the end
-                        if st.session_state.item_index < total_filtered:
-                            go_to_next()
+                        handle_review(df, original_index, "regenerate", use_local_file, local_file_path, total_filtered)
                         st.rerun()
                 
                 # Notes area
@@ -408,15 +453,15 @@ def main():
                 nav_col1, nav_col2 = st.columns(2)
                 with nav_col1:
                     if st.session_state.item_index > 1:
-                        if st.button("Previous", on_click=go_to_previous):
-                            # Clear cache when navigating
-                            clear_image_cache()
+                        if st.button("Previous"):
+                            go_to_previous()
+                            st.rerun()
                 
                 with nav_col2:
                     if st.session_state.item_index < total_filtered:
-                        if st.button("Next", on_click=go_to_next):
-                            # Clear cache when navigating
-                            clear_image_cache()
+                        if st.button("Next"):
+                            go_to_next()
+                            st.rerun()
                 
                 # Progress bar
                 progress = st.session_state.item_index / total_filtered
@@ -436,8 +481,9 @@ def main():
                 st.sidebar.divider()
                 st.sidebar.markdown(f"### Image Preloading")
                 st.sidebar.write(f"Preloaded images: {preloaded_count}")
-                if st.sidebar.button("Force Preload Next"):
-                    preload_images(df, filtered_indices, st.session_state.item_index, count=5)
+                if st.sidebar.button("Force Preload"):
+                    preloaded = preload_images(df, filtered_indices, st.session_state.item_index, count=10)
+                    st.sidebar.success(f"Preloaded {preloaded} new images")
                 
                 # Download the updated CSV
                 csv = df.to_csv(index=False).encode('utf-8')
@@ -461,6 +507,7 @@ def main():
                 st.sidebar.markdown("### Memory Usage")
                 if st.sidebar.button("Clear Cache"):
                     st.cache_data.clear()
+                    prefetch_image.cache_clear()
                     st.session_state.preloaded_images = {}
                     st.rerun()
                 

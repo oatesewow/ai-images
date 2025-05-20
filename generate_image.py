@@ -17,11 +17,11 @@ client = OpenAI(api_key=os.getenv('OPEN_AI_API_KEY'))
 def get_deal_data(deal_id):
     # Establish connection to Redshift
     conn = psycopg2.connect(
-        host=os.environ.get("REDSHIFT_HOST", "bi-redshift.intwowcher.co.uk"),
-        port=os.environ.get("REDSHIFT_PORT", "5439"),
-        dbname=os.environ.get("REDSHIFT_DBNAME", "wowdwhprod"),
-        user=os.environ.get("REDSHIFT_USER", "jenkins"),
-        password=os.environ.get("REDSHIFT_PASSWORD", "9SDy1ffdfTV7")
+        host=os.environ.get("REDSHIFT_HOST"),
+        port=os.environ.get("REDSHIFT_PORT"),
+        dbname=os.environ.get("REDSHIFT_DBNAME"),
+        user=os.environ.get("REDSHIFT_USER"),
+        password=os.environ.get("REDSHIFT_PASSWORD")
     )
 
     # Get email subject
