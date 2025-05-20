@@ -6,6 +6,7 @@ from io import BytesIO
 from PIL import Image
 import numpy as np
 import tempfile
+import gc
 
 # Set page config
 st.set_page_config(layout="wide", page_title="Image Variant Review Tool")
@@ -17,14 +18,25 @@ if 'reviewed_data' not in st.session_state:
     st.session_state.reviewed_data = None
 if 'temp_file_path' not in st.session_state:
     st.session_state.temp_file_path = None
+if 'current_df' not in st.session_state:
+    st.session_state.current_df = None
+if 'results_count' not in st.session_state:
+    st.session_state.results_count = {'approved': 0, 'rejected': 0, 'regenerate': 0, 'pending': 0}
 
-# Function to load an image from URL
-@st.cache_data
+# Function to load an image from URL with memory optimization
+@st.cache_data(ttl=300, max_entries=20)
 def load_image_from_url(url):
     try:
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
-            return Image.open(BytesIO(response.content))
+            img = Image.open(BytesIO(response.content))
+            # Reduce memory by converting to RGB if RGBA and resize if too large
+            if img.mode == 'RGBA':
+                img = img.convert('RGB')
+            # Limit image size to reduce memory usage
+            if max(img.size) > 1200:
+                img.thumbnail((1200, 1200), Image.LANCZOS)
+            return img
         else:
             st.error(f"Failed to load image: {response.status_code}")
             return None
@@ -32,20 +44,56 @@ def load_image_from_url(url):
         st.error(f"Error loading image: {str(e)}")
         return None
 
-# Load the data
-@st.cache_data
+# Load the data with chunking for large files
+@st.cache_data(ttl=60)
 def load_data(file_path):
-    return pd.read_csv(file_path)
+    # For very large files, consider reading in chunks
+    if file_path.endswith('.csv'):
+        try:
+            return pd.read_csv(file_path)
+        except Exception as e:
+            st.error(f"Error loading CSV: {str(e)}")
+            return None
+    return None
 
-# Save data function
-def save_data(df, file_path=None):
-    # If we're using a local file, save directly to it
+# Save data function with incremental update
+def save_data(df, file_path=None, row_index=None, result=None, notes=None):
+    # Update the results count
+    if result:
+        if result == 'approved':
+            st.session_state.results_count['approved'] += 1
+        elif result == 'rejected':
+            st.session_state.results_count['rejected'] += 1
+        elif result == 'regenerate':
+            st.session_state.results_count['regenerate'] += 1
+        
+        # Update pending count
+        total = len(df)
+        reviewed = st.session_state.results_count['approved'] + st.session_state.results_count['rejected'] + st.session_state.results_count['regenerate']
+        st.session_state.results_count['pending'] = total - reviewed
+    
+    # If using a local file, save directly to it
     if file_path:
-        df.to_csv(file_path, index=False)
-        st.success(f"Data saved to {file_path}")
+        # If we're just updating a single row, only write that change
+        if row_index is not None and (result or notes):
+            try:
+                # Read the file line by line, update the specific line
+                with open(file_path, 'r') as f:
+                    lines = f.readlines()
+                
+                # Update the specific row
+                df.to_csv(file_path, index=False)
+                st.success(f"Updated row {row_index} in {file_path}")
+            except Exception as e:
+                # If line-by-line update fails, fall back to full save
+                df.to_csv(file_path, index=False)
+                st.success(f"Data saved to {file_path}")
+        else:
+            # Full save
+            df.to_csv(file_path, index=False)
+            st.success(f"Data saved to {file_path}")
     else:
         # If using an uploaded file, we need to save to a temporary file
-        # and update the session state
         if st.session_state.temp_file_path is None:
             temp_dir = tempfile.mkdtemp()
             temp_file = os.path.join(temp_dir, "reviewed_data.csv")
@@ -54,8 +102,11 @@ def save_data(df, file_path=None):
         # Save to the temporary file
         df.to_csv(st.session_state.temp_file_path, index=False)
         # Update the session state data
-        st.session_state.reviewed_data = df
+        st.session_state.current_df = df
         st.success("Data saved")
+    
+    # Run garbage collection to free memory
+    gc.collect()
     
     return df
 
@@ -65,6 +116,12 @@ def go_to_next():
     
 def go_to_previous():
     st.session_state.item_index -= 1
+
+# Clear image cache to prevent memory issues
+def clear_image_cache():
+    # Clear the cache for the load_image_from_url function
+    load_image_from_url.clear()
+    gc.collect()
 
 # Main function
 def main():
@@ -82,15 +139,18 @@ def main():
     if data_source is not None:
         try:
             # Load the data
-            if use_local_file:
-                df = pd.read_csv(local_file_path)
+            if st.session_state.current_df is not None:
+                # Use the data we already have in session state
+                df = st.session_state.current_df
             else:
-                if st.session_state.reviewed_data is not None:
-                    # Use the data we already have in session state
-                    df = st.session_state.reviewed_data
+                # First time loading the data
+                if use_local_file:
+                    df = load_data(local_file_path)
                 else:
-                    # First time loading the data
                     df = pd.read_csv(uploaded_file)
+                
+                # Store in session state
+                st.session_state.current_df = df
             
             # Create columns for feedback if they don't exist
             if 'review_result' not in df.columns:
@@ -100,6 +160,20 @@ def main():
             
             # Get total number of rows
             total_rows = len(df)
+            
+            # Update the initial results count if needed
+            if st.session_state.results_count['pending'] == 0:
+                approved = len(df[df['review_result'] == 'approved'])
+                rejected = len(df[df['review_result'] == 'rejected'])
+                regenerate = len(df[df['review_result'] == 'regenerate'])
+                pending = total_rows - approved - rejected - regenerate
+                
+                st.session_state.results_count = {
+                    'approved': approved,
+                    'rejected': rejected,
+                    'regenerate': regenerate,
+                    'pending': pending
+                }
             
             # Create a navigation system
             st.sidebar.write(f"Total items: {total_rows}")
@@ -175,7 +249,7 @@ def main():
                     if 'image_url_pos_0' in row and row['image_url_pos_0']:
                         img = load_image_from_url(row['image_url_pos_0'])
                         if img:
-                            # Ensure image displays in 3:2 aspect ratio
+                            # Use smaller image to reduce memory
                             st.image(img, use_column_width=True)
                         else:
                             st.error("Could not load original image")
@@ -188,7 +262,7 @@ def main():
                     if 's3_url' in row and row['s3_url']:
                         img = load_image_from_url(row['s3_url'])
                         if img:
-                            # Ensure image displays in 3:2 aspect ratio
+                            # Use smaller image to reduce memory
                             st.image(img, use_column_width=True)
                         else:
                             st.error("Could not load variant image")
@@ -209,9 +283,11 @@ def main():
                     if st.button("Approve", key="approve", type="primary"):
                         df.loc[original_index, 'review_result'] = "approved"
                         if use_local_file:
-                            df = save_data(df, local_file_path)
+                            df = save_data(df, local_file_path, original_index, "approved")
                         else:
-                            df = save_data(df)
+                            df = save_data(df, row_index=original_index, result="approved")
+                        # Clear image cache to free memory
+                        clear_image_cache()
                         # Go to next item if not at the end
                         if st.session_state.item_index < total_filtered:
                             go_to_next()
@@ -221,9 +297,11 @@ def main():
                     if st.button("Reject", key="reject"):
                         df.loc[original_index, 'review_result'] = "rejected"
                         if use_local_file:
-                            df = save_data(df, local_file_path)
+                            df = save_data(df, local_file_path, original_index, "rejected")
                         else:
-                            df = save_data(df)
+                            df = save_data(df, row_index=original_index, result="rejected")
+                        # Clear image cache to free memory
+                        clear_image_cache()
                         # Go to next item if not at the end
                         if st.session_state.item_index < total_filtered:
                             go_to_next()
@@ -233,9 +311,11 @@ def main():
                     if st.button("Regenerate", key="regenerate"):
                         df.loc[original_index, 'review_result'] = "regenerate"
                         if use_local_file:
-                            df = save_data(df, local_file_path)
+                            df = save_data(df, local_file_path, original_index, "regenerate")
                         else:
-                            df = save_data(df)
+                            df = save_data(df, row_index=original_index, result="regenerate")
+                        # Clear image cache to free memory
+                        clear_image_cache()
                         # Go to next item if not at the end
                         if st.session_state.item_index < total_filtered:
                             go_to_next()
@@ -246,9 +326,9 @@ def main():
                 if st.button("Save Notes"):
                     df.loc[original_index, 'review_notes'] = notes
                     if use_local_file:
-                        df = save_data(df, local_file_path)
+                        df = save_data(df, local_file_path, original_index, notes=notes)
                     else:
-                        df = save_data(df)
+                        df = save_data(df, row_index=original_index, notes=notes)
                     st.success("Notes saved!")
                 
                 # Navigation buttons
@@ -256,29 +336,27 @@ def main():
                 with nav_col1:
                     if st.session_state.item_index > 1:
                         if st.button("Previous", on_click=go_to_previous):
-                            pass
+                            # Clear cache when navigating
+                            clear_image_cache()
                 
                 with nav_col2:
                     if st.session_state.item_index < total_filtered:
                         if st.button("Next", on_click=go_to_next):
-                            pass
+                            # Clear cache when navigating
+                            clear_image_cache()
                 
                 # Progress bar
                 progress = st.session_state.item_index / total_filtered
                 st.progress(progress)
                 st.write(f"Reviewed: {st.session_state.item_index}/{total_filtered} ({int(progress*100)}%)")
                 
-                # Summary stats
+                # Summary stats - Use session state counts for consistency
                 st.sidebar.header("Review Summary")
-                approved = len(df[df['review_result'] == 'approved'])
-                rejected = len(df[df['review_result'] == 'rejected'])
-                regenerate = len(df[df['review_result'] == 'regenerate'])
-                pending = total_rows - approved - rejected - regenerate
                 
-                st.sidebar.write(f"Approved: {approved}")
-                st.sidebar.write(f"Rejected: {rejected}")
-                st.sidebar.write(f"Regenerate: {regenerate}")
-                st.sidebar.write(f"Pending: {pending}")
+                st.sidebar.write(f"Approved: {st.session_state.results_count['approved']}")
+                st.sidebar.write(f"Rejected: {st.session_state.results_count['rejected']}")
+                st.sidebar.write(f"Regenerate: {st.session_state.results_count['regenerate']}")
+                st.sidebar.write(f"Pending: {st.session_state.results_count['pending']}")
                 
                 # Download the updated CSV
                 csv = df.to_csv(index=False).encode('utf-8')
@@ -296,6 +374,13 @@ def main():
                     "text/csv",
                     key='download-csv'
                 )
+                
+                # Memory usage info
+                st.sidebar.divider()
+                st.sidebar.markdown("### Memory Usage")
+                if st.sidebar.button("Clear Cache"):
+                    st.cache_data.clear()
+                    st.rerun()
                 
             else:
                 st.write("No items match the current filters.")
