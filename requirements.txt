@@ -1,0 +1,9 @@
+streamlit==1.30.0
+pandas
+pillow
+requests
+numpy
+python-dotenv
+psycopg2-binary
+openai
+pyngrok
