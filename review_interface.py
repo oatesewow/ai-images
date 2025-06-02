@@ -180,19 +180,17 @@ def save_data(df, file_path=None, row_index=None, result=None, notes=None):
     # If using a local file, save directly to it
     if file_path:
         # If we're just updating a single row, only write that change
-        if row_index is not None and (result or notes):
+        if row_index is not None and (result or notes is not None):
             try:
-                # Read the file line by line, update the specific line
-                with open(file_path, 'r') as f:
-                    lines = f.readlines()
-                
-                # Update the specific row
+                # Always do a full save to ensure consistency
                 df.to_csv(file_path, index=False)
-                st.success(f"Updated row {row_index} in {file_path}")
+                if result:
+                    st.success(f"Updated row {row_index} in {file_path}")
+                elif notes is not None:
+                    st.success(f"Notes saved for row {row_index} in {file_path}")
             except Exception as e:
-                # If line-by-line update fails, fall back to full save
-                df.to_csv(file_path, index=False)
-                st.success(f"Data saved to {file_path}")
+                # If save fails, show error
+                st.error(f"Error saving to {file_path}: {str(e)}")
         else:
             # Full save
             df.to_csv(file_path, index=False)
@@ -208,7 +206,10 @@ def save_data(df, file_path=None, row_index=None, result=None, notes=None):
         df.to_csv(st.session_state.temp_file_path, index=False)
         # Update the session state data
         st.session_state.current_df = df
-        st.success("Data saved")
+        if result:
+            st.success("Data saved")
+        elif notes is not None:
+            st.success("Notes saved")
     
     # Run garbage collection to free memory
     gc.collect()
@@ -443,11 +444,14 @@ def main():
                 notes = st.text_area("Review notes", value=row['review_notes'] if not pd.isna(row['review_notes']) else "")
                 if st.button("Save Notes"):
                     df.loc[original_index, 'review_notes'] = notes
+                    # Update the session state dataframe
+                    st.session_state.current_df = df
                     if use_local_file:
                         df = save_data(df, local_file_path, original_index, notes=notes)
                     else:
                         df = save_data(df, row_index=original_index, notes=notes)
                     st.success("Notes saved!")
+                    st.rerun()
                 
                 # Navigation buttons
                 nav_col1, nav_col2 = st.columns(2)
