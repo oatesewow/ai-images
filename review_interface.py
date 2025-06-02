@@ -365,8 +365,14 @@ def main():
                     st.write(f"**Product:** {row['email_subject']}")
                     if 'category_name' in row:
                         st.write(f"**Category:** {row['category_name']}")
+                    if 'visitors_last_7_days' in row and not pd.isna(row['visitors_last_7_days']):
+                        st.write(f"**Visitors (Last Week):** {row['visitors_last_7_days']}")
                     if 'revenue_last_14_days' in row:
                         st.write(f"**Revenue (14 days):** £{row['revenue_last_14_days']}")
+                    
+                    # Add deal link
+                    deal_url = f"https://www.wowcher.co.uk/deal/shop/{row['id']}"
+                    st.markdown(f"**Deal Link:** [View Deal]({deal_url})")
                 
                 # If not already preloaded, start preloading now
                 if not st.session_state.next_item_preloaded and time.time() - st.session_state.last_action_time > 0.5:
