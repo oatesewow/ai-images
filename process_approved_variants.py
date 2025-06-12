@@ -99,7 +99,7 @@ def prepare_for_redshift(df):
 
 def process_single_image(args):
     """
-    Process a single image - create S3 variant and upload
+    Process a single image - copy S3 object to new location with variant ID
     """
     index, row, s3_client, bucket_name = args
     try:
@@ -113,21 +113,44 @@ def process_single_image(args):
         if pd.isna(variant_url):
             print(f"Skipping row {index}: No variant URL")
             return index, None, None
-            
-        # Download the variant image
-        response = requests.get(variant_url)
-        if response.status_code != 200:
-            print(f"Failed to download image for deal {deal_id}")
+        
+        # Parse the S3 URL to get source bucket and key
+        # Handle different S3 URL formats
+        if variant_url.startswith('https://'):
+            # Format: https://bucket.s3.amazonaws.com/key or https://bucket/key
+            if '.s3.amazonaws.com/' in variant_url:
+                # https://bucket.s3.amazonaws.com/key
+                parts = variant_url.replace('https://', '').split('.s3.amazonaws.com/', 1)
+                source_bucket = parts[0]
+                source_key = parts[1]
+            else:
+                # https://bucket/key  
+                parts = variant_url.replace('https://', '').split('/', 1)
+                source_bucket = parts[0]
+                source_key = parts[1] if len(parts) > 1 else ''
+        elif variant_url.startswith('s3://'):
+            # Format: s3://bucket/key
+            parts = variant_url.replace('s3://', '').split('/', 1)
+            source_bucket = parts[0]
+            source_key = parts[1] if len(parts) > 1 else ''
+        else:
+            print(f"Unsupported S3 URL format for deal {deal_id}: {variant_url}")
             return index, None, None
         
         # Create new key with variant ID
         new_key = f"images/deal/{deal_id}/{variant_image_id}.jpg"
         
-        # Upload to S3
-        s3_client.put_object(
+        # Copy object within S3 (much more efficient than download/upload)
+        copy_source = {
+            'Bucket': source_bucket,
+            'Key': source_key
+        }
+        
+        s3_client.copy_object(
+            CopySource=copy_source,
             Bucket=bucket_name,
             Key=new_key,
-            Body=response.content,
+            MetadataDirective='REPLACE',
             ContentType='image/jpeg',
             CacheControl='no-cache'
         )
@@ -165,7 +188,7 @@ def copy_approved_variants_to_s3(df):
             futures = [executor.submit(process_single_image, args) 
                       for args in args_list]
             
-            with tqdm(total=len(df), desc="Copying Variants to S3") as pbar:
+            with tqdm(total=len(df), desc="Copying Variants within S3") as pbar:
                 for future in as_completed(futures):
                     idx, final_url, status = future.result()
                     if final_url:

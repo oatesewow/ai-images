@@ -38,7 +38,11 @@ PRELOAD_COUNT = 5
 @st.cache_data(ttl=300, max_entries=50)
 def load_image_from_url(url):
     try:
-        response = requests.get(url, timeout=10)
+        # Add cache-busting parameter to get the most recent image
+        cache_buster = f"?t={int(time.time())}"
+        url_with_cache_buster = url + cache_buster
+        
+        response = requests.get(url_with_cache_buster, timeout=10)
         if response.status_code == 200:
             img = Image.open(BytesIO(response.content))
             # Reduce memory by converting to RGB if RGBA and resize if too large
@@ -59,7 +63,11 @@ def load_image_from_url(url):
 @lru_cache(maxsize=20)
 def prefetch_image(url):
     try:
-        response = requests.get(url, timeout=10)
+        # Add cache-busting parameter to get the most recent image
+        cache_buster = f"?t={int(time.time())}"
+        url_with_cache_buster = url + cache_buster
+        
+        response = requests.get(url_with_cache_buster, timeout=10)
         if response.status_code == 200:
             img = Image.open(BytesIO(response.content))
             if img.mode == 'RGBA':
