@@ -1,0 +1,81 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Beauty Product</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>85mm f/1.8</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0 (ensures full bottle and label clarity)</aperture>
+    <shutterSpeed>1/160 s</shutterSpeed>
+    <whiteBalance>5500 K (daylight)</whiteBalance>
+    <focus>Manual focus on the product’s front label or dispensing mechanism</focus>
+    <depthOfField>Moderate — entire product in sharp focus, background gently blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Large diffused softbox with subtle rim light</type>
+    <reflectionControl>Reflection-controlled, even illumination</reflectionControl>
+    <style>Accentuate bottle contours, soft and directional shadows</style>
+    <highlights>Natural highlights on glossy packaging, never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate</sceneType>
+    <location>Clean bathroom vanity or salon countertop</location>
+    <background>Neutral marble or soft pastel backdrop</background>
+    <optionalProps>Folded white towel, wooden comb, or small greenery for context</optionalProps>
+    <backgroundPriority>Clean, complementary, secondary to product</backgroundPriority>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

@@ -1,0 +1,81 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Apparel — Hoodie or Sweatshirt</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, fabric texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>85mm f/1.8</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0</aperture>
+    <shutterSpeed>1/160s</shutterSpeed>
+    <whiteBalance>Daylight preset, balanced with gray card</whiteBalance>
+    <focus>Single-point autofocus on upper torso/central logo area</focus>
+    <depthOfField>Moderate — garment crisp, background softly separated</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Twin softboxes at 45° with gentle rim light</type>
+    <style>Even, shadow-minimizing illumination that accents fabric texture</style>
+    <direction>Soft, directional, consistent with studio or controlled environment</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, fashion-appropriate</sceneType>
+    <location>Minimalist studio set or clean urban backdrop (e.g., neutral concrete wall or matte seamless paper)</location>
+    <backgroundStyle>Clean, complementary, secondary to product</backgroundStyle>
+    <productFocus>Product is the primary visual anchor</productFocus>
+    <shadows>Soft and directional if present, consistent with single light source</shadows>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be visually centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

@@ -1,0 +1,79 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Garden Accessory</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>85mm f/2.8 (macro-capable for capturing fine decorative details)</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6 (keeps entire accessory crisp while gently separating it from background foliage)</aperture>
+    <shutterSpeed>1/200s</shutterSpeed>
+    <whiteBalance>Daylight (5500 K)</whiteBalance>
+    <focus>Manual focus on product's most intricate feature or texture</focus>
+    <depthOfField>Moderate — product in sharp focus, surrounding garden setting softly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Diffused natural sunlight or large outdoor scrim</type>
+    <style>Even, shadow-minimizing illumination</style>
+    <shadows>Soft and directional if present, consistent with single light source</shadows>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate outdoor</sceneType>
+    <location>Tasteful backyard or patio vignette (e.g., among lush greenery, on a weathered wooden table, beside a stone path, or hanging from a pergola)</location>
+    <backgroundStyle>Clean, complementary foliage tones, secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor, visually centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

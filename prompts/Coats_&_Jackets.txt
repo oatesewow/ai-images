@@ -1,0 +1,86 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Outerwear (Coat/Jacket)</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, fabric texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>85mm f/1.8 portrait prime</lens>
+    <lensNotes>Flattering perspective for outerwear, minimal distortion</lensNotes>
+    <ISO>100</ISO>
+    <aperture>f/5.6</aperture>
+    <apertureNotes>Garment edge-to-edge sharpness while retaining background separation</apertureNotes>
+    <shutterSpeed>1/200s</shutterSpeed>
+    <shutterNotes>Freezes subtle fabric movement</shutterNotes>
+    <whiteBalance>Daylight preset or custom gray-card</whiteBalance>
+    <focus>Single-point AF on collar/upper torso details</focus>
+    <depthOfField>Moderate — complete coat in crisp focus, background tastefully blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Two large diffused softboxes (key + fill) with optional rim light</type>
+    <alternative>Overcast natural light acceptable for lifestyle shots</alternative>
+    <style>Professional fashion product lighting; even, soft, flattering</style>
+    <direction>Soft and directional, consistent with single light source</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Studio with seamless neutral backdrop (light grey, charcoal, or warm beige) OR lifestyle urban sidewalk in soft autumn light</sceneType>
+    <intendedUse>Outerwear suited to cool weather</intendedUse>
+    <backgroundStyle>Clean, complementary, secondary to product</backgroundStyle>
+    <shadows>Soft and directional if present</shadows>
+  </environment>
+
+  <composition>
+    <display>Display on fit model or ghost mannequin to showcase drape and fit</display>
+    <colorVariant>Only one per image, must be a real option</colorVariant>
+    <styling>Coat/jacket fully fastened or styled as intended; no wrinkles or lint</styling>
+    <primaryFocus>Product is the primary visual anchor</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

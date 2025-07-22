@@ -1,0 +1,80 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Paper Goods</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.8 (captures full pack and setting without distortion)</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0 (keeps entire roll or tissue pack sharp)</aperture>
+    <shutterSpeed>1/100s</shutterSpeed>
+    <whiteBalance>Daylight preset with slight warmth for a fresh, clean feel</whiteBalance>
+    <focus>Manual focus on the front-most roll or primary pack face</focus>
+    <depthOfField>Moderate-to-deep — product fully crisp, background gently softened</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Twin diffused softboxes</type>
+    <fill>Bounce fill</fill>
+    <style>Bright, shadow-minimizing illumination that preserves white texture detail</style>
+    <direction>Consistent with single light source</direction>
+    <highlights>Natural highlights on embossed paper texture, never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate</sceneType>
+    <location>Spotless white-quartz kitchen countertop or clean bathroom shelf with chrome fixtures</location>
+    <backgroundStyle>Clean, neutral tiles or soft pastel wall—complementary, secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be the primary visual anchor</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

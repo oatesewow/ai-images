@@ -1,0 +1,79 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Home Interior — Bed & Mattress</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one color variant or bedding set per image; must be an available option</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.0 (captures entire bed without distortion)</lens>
+    <ISO>200</ISO>
+    <aperture>f/8.0 (full bed and mattress in crisp focus)</aperture>
+    <shutterSpeed>1/60s (use tripod to prevent shake)</shutterSpeed>
+    <whiteBalance>Custom 5600K (daylight tone)</whiteBalance>
+    <focus>Manual focus on mid-mattress surface and stitching detail</focus>
+    <depthOfField>Moderate — product fully sharp, background softly rendered</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Twin softboxes with overhead fill</type>
+    <style>Warm, even, shadow-minimizing illumination</style>
+    <shadows>Soft, directional, consistent with single light source</shadows>
+    <highlights>Natural highlights on fabric, never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, upscale bedroom setting</sceneType>
+    <location>Tidy modern room with neutral walls, minimal décor, soft area rug</location>
+    <backgroundStyle>Clean, complementary, secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor, centered with headboard slightly angled if needed</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

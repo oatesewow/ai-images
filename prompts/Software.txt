@@ -1,0 +1,81 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Software Product Packaging & UI</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, screen UI, and packaging color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <editionOrScreen>Only show one edition or device screen per image; must be a real option</editionOrScreen>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+      <noInventedPackaging>true</noInventedPackaging>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.8 (minimizes distortion while capturing both packaging and on-screen UI)</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6 (keeps the entire device screen and any physical box in sharp focus)</aperture>
+    <shutterSpeed>1/100 s</shutterSpeed>
+    <whiteBalance>5600 K (daylight, neutral tech aesthetic)</whiteBalance>
+    <focus>Manual focus on the software’s primary display area or branded section of the packaging</focus>
+    <depthOfField>Moderate — product in crisp focus, workspace background subtly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Dual softboxes with faint rim light</type>
+    <style>Even, glare-free illumination that balances screen brightness</style>
+    <direction>Soft, directional, consistent with single light source</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic modern workspace</sceneType>
+    <location>Sleek desk setup with a laptop or monitor displaying the software interface</location>
+    <accessories>Optional minimal tech accessories (keyboard, mouse) in neutral tones</accessories>
+    <backgroundStyle>Clean matte white or charcoal wall with soft LED accent, complementary, secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product (packaging and/or device screen) must be the visual anchor</primaryFocus>
+    <realism>Photo-realistic, natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with lighting</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

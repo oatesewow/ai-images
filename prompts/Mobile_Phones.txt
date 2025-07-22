@@ -1,0 +1,81 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Smartphone</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>24–70 mm f/2.8 set to 70 mm</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0</aperture>
+    <shutterSpeed>1/125 s</shutterSpeed>
+    <whiteBalance>5500 K (neutral daylight)</whiteBalance>
+    <focus>Manual focus on the phone’s display and camera module</focus>
+    <depthOfField>Moderate — device in sharp focus, background softly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Twin softboxes with subtle rim light</type>
+    <style>Even, shadow-minimizing illumination</style>
+    <emphasis>Highlights glass and metal edges</emphasis>
+    <shadows>Soft and directional, consistent with single light source</shadows>
+    <highlights>Natural on screen and frame, never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, tech-appropriate</sceneType>
+    <location>Matte-black acrylic stand or minimal workstation surface</location>
+    <props>Optional subtle tech props (e.g., wireless earbuds) kept out of focus</props>
+    <backgroundStyle>Smooth neutral gradient (charcoal-to-dark grey) or soft white sweep; complementary and secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor</primaryFocus>
+    <realism>Photo-realistic and modern tech aesthetic</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

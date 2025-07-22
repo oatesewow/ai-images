@@ -1,0 +1,81 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Food Product</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <flavorOrPortion>Only show one per image; must exist on product</flavorOrPortion>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>100mm f/2.8 Macro</lens>
+    <ISO>200</ISO>
+    <aperture>f/5.6</aperture>
+    <shutterSpeed>1/60s (tripod-mounted)</shutterSpeed>
+    <whiteBalance>Daylight (≈5200 K)</whiteBalance>
+    <focus>Manual focus on the food’s frontmost garnish, label, or key texture</focus>
+    <depthOfField>Moderate — full product in crisp focus, background gently softened</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Diffused window light</type>
+    <fill>Large overhead softbox fill</fill>
+    <style>Even, glare-free illumination that enhances surface detail</style>
+    <direction>Single, soft directional light</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, appetizing tabletop setting</sceneType>
+    <location>Clean kitchen counter or rustic wooden table</location>
+    <props>Minimal, health-focused (e.g., fresh greens, measuring spoon)</props>
+    <backgroundStyle>Clean, neutral, complementary to food tones</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be the primary visual anchor</primaryFocus>
+    <realism>Photorealistic and appetizing</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

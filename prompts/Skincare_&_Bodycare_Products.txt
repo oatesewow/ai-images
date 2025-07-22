@@ -1,0 +1,82 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Beauty/Personal Care Product</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>100mm f/2.8 Macro</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0</aperture>
+    <shutterSpeed>1/160s</shutterSpeed>
+    <whiteBalance>5600 K (daylight)</whiteBalance>
+    <focus>Manual focus on product’s front label or texture swatch</focus>
+    <depthOfField>Moderate — entire product in sharp focus, background softly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Large diffused softbox at 45°</type>
+    <fill>Subtle white fill card</fill>
+    <style>Even illumination, controls specular highlights on glossy containers</style>
+    <direction>Single, soft directional light</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, spa-inspired</sceneType>
+    <location>Clean white-marble vanity top</location>
+    <props>Neatly folded towel, subtle greenery (eucalyptus sprig or aloe leaf)</props>
+    <ambiance>Soft daylight</ambiance>
+    <backgroundStyle>Neutral pastel or marble surface, complementary and secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be the primary visual anchor</primaryFocus>
+    <realism>Photo-realistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, directional, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

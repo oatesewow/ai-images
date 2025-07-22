@@ -1,0 +1,82 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Mystery Box</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+      <noInventedPackaging>true</noInventedPackaging>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.0 — slightly wider to frame a full “mystery box” and its immediate surroundings</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6 — enough depth to keep the entire package sharp while still separating it from background</aperture>
+    <shutterSpeed>1/125 s</shutterSpeed>
+    <whiteBalance>5500 K (daylight-neutral)</whiteBalance>
+    <focus>manual focus centered on the front face of the mystery package</focus>
+    <depthOfField>Moderate — product fully crisp, background smoothly falls off to shadow</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Single overhead softbox</type>
+    <rimLight>Subtle rim-light kicker to create a faint glow and hint of intrigue</rimLight>
+    <shadows>Soft and controlled</shadows>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, suspense-themed</sceneType>
+    <location>Studio tabletop</location>
+    <backgroundStyle>Dark-to-mid grey gradient or subtly back-lit haze to evoke “mystery” without distraction</backgroundStyle>
+    <tabletopSurface>Matte charcoal or deep walnut</tabletopSurface>
+    <optionalAccent>Softly blurred confetti pieces or question-mark shaped bokeh in background to reinforce the surprise theme</optionalAccent>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be the primary visual anchor, visually centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

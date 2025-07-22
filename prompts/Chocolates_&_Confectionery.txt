@@ -1,0 +1,94 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Gourmet Chocolates</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <flavorVariants>Only show one flavor or assortment per image; must be an available variant</flavorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+    <appearance>
+      <pristineChocolates>true</pristineChocolates>
+      <naturalSheen>subtle</naturalSheen>
+      <noBloomOrFingerprints>true</noBloomOrFingerprints>
+    </appearance>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>100mm f/2.8 Macro</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6</aperture>
+    <shutterSpeed>1/160s</shutterSpeed>
+    <whiteBalance>Custom 5600K</whiteBalance>
+    <focus>Manual focus on the leading edge or filling reveal of the primary chocolate piece</focus>
+    <depthOfField>Moderate — foreground confection in crisp focus, background candies gently blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Large diffused softbox</type>
+    <fill>White reflector cards to lift shadows</fill>
+    <style>Soft, appetizing highlights on glossy chocolate surfaces</style>
+    <direction>Single, soft directional light</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate</sceneType>
+    <location>Elegant dessert board or marble countertop</location>
+    <ambience>Warm, cozy</ambience>
+    <props>
+      <allowed>
+        <item>Light dusting of cocoa powder</item>
+        <item>Whole cocoa beans (few)</item>
+        <item>Linen napkin</item>
+      </allowed>
+      <priority>Secondary to product</priority>
+    </props>
+    <backgroundStyle>Clean, tonal harmony with rich browns; softly blurred to maintain focus on chocolates</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the visual anchor</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, directional, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

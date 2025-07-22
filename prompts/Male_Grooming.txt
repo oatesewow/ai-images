@@ -1,0 +1,82 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Men's Grooming Tools</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>100mm f/2.8L Macro IS USM</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6</aperture>
+    <shutterSpeed>1/160 s</shutterSpeed>
+    <whiteBalance>Daylight preset (~5200 K)</whiteBalance>
+    <focus>Manual focus on brand label or blade edge/key feature</focus>
+    <depthOfField>Moderate — product tack-sharp, background tastefully blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Twin diffused softboxes at 45°</type>
+    <overheadLight>Subtle overhead hair-light</overheadLight>
+    <reflectionControl>Controls reflections on metallic surfaces</reflectionControl>
+    <style>Professional quality product lighting</style>
+    <highlights>Natural highlights on metallic parts, never blown out; use polarizing filter where needed to tame glare</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate</sceneType>
+    <location>Modern masculine bathroom vanity or barbershop counter</location>
+    <surface>Clean marble or matte slate</surface>
+    <accents>Optional folded towel or subtle steam accent</accents>
+    <backgroundStyle>Clean, complementary, secondary to product; neutral charcoal, navy, or white tones to reinforce men’s grooming aesthetic</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor, visually centered and undistracted</primaryFocus>
+    <realism>Photo-realistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

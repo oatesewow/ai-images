@@ -1,0 +1,80 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Sofa</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.0 (mild wide-angle to capture full furniture width)</lens>
+    <ISO>200</ISO>
+    <aperture>f/8.0 (deep enough to keep entire sofa in sharp focus)</aperture>
+    <shutterSpeed>1/60s (use tripod for stability)</shutterSpeed>
+    <whiteBalance>Daylight preset</whiteBalance>
+    <focus>Manual focus on sofa’s front cushions and armrests</focus>
+    <depthOfField>Moderate-to-deep — complete product in crisp focus, background gently softened</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Large softbox or indirect window light</type>
+    <style>Even, shadow-softening illumination across upholstery</style>
+    <shadows>Soft and directional, consistent with single light source</shadows>
+    <highlights>Natural, never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate indoor</sceneType>
+    <location>Contemporary living room</location>
+    <backgroundStyle>Neutral walls, subtle décor (e.g., low coffee table, soft rug) that complements upholstery tone without drawing attention</backgroundStyle>
+    <backgroundPriority>Clean, complementary, secondary to product</backgroundPriority>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be visually centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

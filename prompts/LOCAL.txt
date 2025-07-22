@@ -1,0 +1,63 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Service Promotion</category>
+    <representation>
+      <coreExperience>Visually communicate the core experience or service in an authentic and aspirational way</coreExperience>
+      <people>
+        <include>Only if appropriate</include>
+        <appearance>Objectively attractive, natural, relaxed, genuinely engaged expressions</appearance>
+        <staging>Avoid exaggerated or artificial staging</staging>
+        <bodyPositioning>All body positions must be physically possible</bodyPositioning>
+        <attire>Professional and appropriate for the service</attire>
+      </people>
+      <focus>Highlight one setting or moment that clearly represents the value of the experience</focus>
+      <props>
+        <tools>Include only accurate tools, furnishings, or attire that reflect the service</tools>
+      </props>
+    </representation>
+  </product>
+
+  <scene>
+    <setting>Realistic, appealing, and suited to the type of service</setting>
+    <lighting>Natural lighting</lighting>
+    <depthOfField>Soft — keeps the service or activity as the clear focal point</depthOfField>
+    <background>
+      <style>Aspirational but believable; must not compete with or overshadow the subject</style>
+      <avoid>Busy or generic backdrops</avoid>
+      <suggest>Quality, comfort, or excitement</suggest>
+    </background>
+  </scene>
+
+  <headline>
+    <text>Condensed version of {email_subject}</text>
+    <font>Clear, legible, modern sans-serif</font>
+    <placement>Towards the top of the image</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>4px minimum</padding>
+    <style>Do not repeat headline text elsewhere in the image; ensure it does not obscure the subject</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noInfographicInBottomRight>true</noInfographicInBottomRight>
+      <noRepeatedText>true</noRepeatedText>
+      <padding>4px minimum for all text and graphic elements</padding>
+    </textRules>
+    <graphics>
+      <noPricing>true</noPricing>
+      <noLogosUnlessProvided>true</noLogosUnlessProvided>
+      <noInventedProps>true</noInventedProps>
+      <noInventedFeatures>true</noInventedFeatures>
+      <noInventedEnvironments>true</noInventedEnvironments>
+    </graphics>
+    <realism>
+      <accurateColorPalettes>true</accurateColorPalettes>
+      <accurateUniforms>true</accurateUniforms>
+      <accurateTools>true</accurateTools>
+    </realism>
+    <spelling>Must be 100% correct</spelling>
+    <bottomRightCorner>Completely clear of any graphics or text</bottomRightCorner>
+  </designConstraints>
+</imageRequest>

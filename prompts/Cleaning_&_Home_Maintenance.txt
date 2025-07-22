@@ -1,0 +1,80 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Cleaning Tools</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.8 (room-friendly focal length to capture full cleaning tools)</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0 (ensures entire product—handle to head—remains sharp)</aperture>
+    <shutterSpeed>1/80 s (tripod-mounted stability)</shutterSpeed>
+    <whiteBalance>Daylight preset for accurate indoor tones</whiteBalance>
+    <focus>Manual focus on the product’s primary functional element (e.g., brush head, spray nozzle)</focus>
+    <depthOfField>Moderate — product crisp, background gently softened</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Dual softboxes with overhead fill</type>
+    <style>Even, glare-minimizing illumination on plastic or metal surfaces</style>
+    <direction>Soft and directional, consistent with single light source</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate indoor</sceneType>
+    <location>Spotless kitchen, bathroom, or utility room</location>
+    <details>Subtle household details (tiles, countertops, sink) in soft focus</details>
+    <backgroundStyle>Clean, neutral hues that complement product colors</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be the primary visual anchor</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with lighting</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

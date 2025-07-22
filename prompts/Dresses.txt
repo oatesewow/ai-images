@@ -1,0 +1,81 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Fashion Apparel</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, fabric texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>85mm f/1.8</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0</aperture>
+    <shutterSpeed>1/160s</shutterSpeed>
+    <whiteBalance>Custom 5600 K</whiteBalance>
+    <focus>Eye-level autofocus on model; garment stitching and texture must be tack-sharp</focus>
+    <depthOfField>Moderate — model and dress fully sharp, background gently separated</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Dual large softboxes with overhead fill</type>
+    <style>Even, shadow-softening illumination that defines fabric drape</style>
+    <direction>Soft, consistent with single light source</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Clean studio or minimal lifestyle interior</sceneType>
+    <location>Fashion-appropriate, neutral, or pastel seamless backdrop</location>
+    <backgroundStyle>Secondary to product — neutral, complementary (e.g., soft gray or pastel)</backgroundStyle>
+    <productAnchor>Product is the primary visual anchor</productAnchor>
+    <shadows>Soft and directional, consistent with lighting</shadows>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be visually centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

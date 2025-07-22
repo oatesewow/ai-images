@@ -1,0 +1,84 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Jewelry Set</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one metal/stone variant per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFingerprintSmudges>true</noFingerprintSmudges>
+      <noDustOrLint>true</noDustOrLint>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+      <noInventedPackaging>true</noInventedPackaging>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>100mm f/2.8 Macro</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0</aperture>
+    <shutterSpeed>1/125s</shutterSpeed>
+    <whiteBalance>Custom (balanced for true metal &amp; gem tones)</whiteBalance>
+    <focus>Manual focus on primary gemstone or central piece</focus>
+    <depthOfField>Moderate — entire set crisply focused, background softly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Dual diffused softboxes</type>
+    <fill>White reflectors</fill>
+    <style>Glare-controlled, sparkle-enhancing illumination</style>
+    <direction>Soft, controlled, consistent with single light source</direction>
+    <highlights>Controlled specular highlights on gemstones, never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Elegant, upscale showroom vignette</sceneType>
+    <location>Formal wear &amp; gifting context</location>
+    <backgroundStyle>Clean, neutral (matte charcoal, pale ivory, or soft gradient), complementary to metal hue</backgroundStyle>
+    <productArrangement>Arrange complete set symmetrically on suede or acrylic riser</productArrangement>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor, symmetrically arranged</primaryFocus>
+    <realism>Photo-realistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

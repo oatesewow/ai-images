@@ -1,0 +1,82 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Travel Accessories</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.8</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6</aperture>
+    <shutterSpeed>1/160s</shutterSpeed>
+    <whiteBalance>Daylight</whiteBalance>
+    <focus>Manual focus on product’s key functional area (e.g., adapter prongs, pillow clasp)</focus>
+    <depthOfField>Moderate — product crisp, background softly identifiable (e.g., suitcase interior, tray table)</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Large softbox simulating indirect window light</type>
+    <style>Balanced, minimal glare on fabrics/plastics</style>
+    <direction>Single, soft directional light</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate travel setting</sceneType>
+    <location>
+      <packingCubesOrToiletryBags>Open suitcase on a neatly made hotel-room bed</packingCubesOrToiletryBags>
+      <travelPillowsOrAdapters>Airplane seat or tray table with window light</travelPillowsOrAdapters>
+    </location>
+    <backgroundStyle>Clean, complementary, secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor, centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

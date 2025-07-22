@@ -1,0 +1,86 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Jewelry - Ring</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one metal/stone variant per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>Only if contextually valid (e.g., balanced on a velvet cone)</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+      <noInventedPackaging>true</noInventedPackaging>
+    </integrity>
+    <handling>
+      <polish>Thoroughly polish to remove fingerprints and dust</polish>
+      <stabilization>Use invisible acrylic stand or museum putty; supports must not be visible</stabilization>
+    </handling>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>100mm f/2.8 Macro</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0 — maximizes detail across the ring while letting the backdrop fall gently out of focus</aperture>
+    <shutterSpeed>1/200s (flash-sync, eliminates handshake at macro distance)</shutterSpeed>
+    <whiteBalance>5500K daylight preset (accurate metal and gemstone color reproduction)</whiteBalance>
+    <focus>Manual focus precisely on the ring’s center stone or primary engraving</focus>
+    <depthOfField>Moderate — entire ring sharp, background subtly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Dual diffused softboxes for even coverage</type>
+    <accent>Small, focused kicker light for controlled specular highlights and gemstone sparkle</accent>
+    <style>Even illumination with subtle, controlled sparkle highlights on facets</style>
+    <direction>Soft, directional shadows consistent with single key light</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Elegant tabletop jewelry setting</sceneType>
+    <location>Ring displayed on a neutral velvet pad, matte acrylic riser, or softly lit marble slab</location>
+    <backgroundStyle>Clean, complementary (off-white, charcoal, or pastel gradient), always secondary to the ring</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Ring must be the primary visual anchor</primaryFocus>
+    <realism>Photo-realistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, directional, consistent with lighting</shadows>
+    <sparkle>Subtle, controlled highlights on gemstone facets</sparkle>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

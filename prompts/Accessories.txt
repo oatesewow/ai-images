@@ -1,0 +1,83 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Accessory</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <contextualFloating>Allowed only if accessory is resting naturally on a surface</contextualFloating>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>100mm f/2.8 macro</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6</aperture>
+    <shutterSpeed>1/160s</shutterSpeed>
+    <whiteBalance>Custom—neutral grey card reference</whiteBalance>
+    <focus>Manual focus on the accessory’s primary functional element</focus>
+    <depthOfField>Moderate—entire product tack-sharp, background tastefully blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Diffused softbox</type>
+    <accent>Subtle rim light to accentuate metal or glass surfaces</accent>
+    <glareControl>Glare-controlled</glareControl>
+    <style>Even, professional illumination</style>
+    <direction>Single, soft directional light</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, product-appropriate</sceneType>
+    <location>Clean wooden bar top or marble kitchen counter</location>
+    <backgroundElements>Softly blurred drinkware or garnish</backgroundElements>
+    <backgroundStyle>Secondary to product — clean, complementary</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, directional, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

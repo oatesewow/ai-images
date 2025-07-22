@@ -1,0 +1,82 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Garden Game</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.8 (wider frame captures full-size garden games while keeping perspective natural)</lens>
+    <ISO>100</ISO>
+    <aperture>f/8.0 (ensures the entire game set and immediate play area stay sharp)</aperture>
+    <shutterSpeed>1/250 s (freezes any slight movement in an outdoor scene)</shutterSpeed>
+    <whiteBalance>Daylight preset</whiteBalance>
+    <focus>Manual focus on the game’s primary play element or scoring area</focus>
+    <depthOfField>Moderate—product and playing surface in crisp focus, distant garden features softly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Diffused natural daylight</type>
+    <fill>Scrim or lightly overcast sky for even, shadow-minimizing illumination</fill>
+    <style>Professional outdoor product photography</style>
+    <direction>Single, soft directional light (diffused sunlight)</direction>
+    <highlights>Natural—never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic outdoor garden setting</sceneType>
+    <location>Neatly trimmed lawn or patio</location>
+    <surroundings>Subtle greenery or fencing</surroundings>
+    <humanElements>Optional partial human elements (hands, feet) to suggest scale—no full faces</humanElements>
+    <backgroundStyle>Clean, complementary, secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product is the primary visual anchor</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with a single diffused sunlight source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Clean, modern sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

@@ -1,0 +1,84 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Seasonal Product</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>50mm f/1.4</lens>
+    <ISO>100</ISO>
+    <aperture>f/2.8</aperture>
+    <apertureNotes>Creates pleasing holiday bokeh</apertureNotes>
+    <shutterSpeed>1/125s</shutterSpeed>
+    <whiteBalance>3200 K (warm tungsten) to evoke seasonal coziness</whiteBalance>
+    <focus>Manual focus on product's front face or key feature</focus>
+    <depthOfField>Shallow — product in sharp focus, softly blurred festive background</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Diffused softbox</type>
+    <fill>Subtle warm string-light fill</fill>
+    <style>Even, shadow-minimizing illumination</style>
+    <direction>Single, soft directional light</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate</sceneType>
+    <location>Rustic wooden tabletop</location>
+    <backgroundElements>Softly blurred Christmas tree lights, pine greenery, or wrapped-gift elements</backgroundElements>
+    <backgroundStyle>Clean, complementary, secondary to product</backgroundStyle>
+    <productAnchor>Product is the primary visual anchor</productAnchor>
+    <shadows>Soft and directional, consistent with single light source</shadows>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be visually centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

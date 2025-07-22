@@ -1,0 +1,81 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Lamp / Lighting Fixture</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image.</notes>
+    </referenceImage>
+    <colorVariants>Only show one per image; must exist on product</colorVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5 (mounted on tripod)</model>
+    <lens>35mm f/2.0</lens>
+    <ISO>200</ISO>
+    <aperture>f/5.6 — keeps entire fixture sharp while softly separating background</aperture>
+    <shutterSpeed>1/60s</shutterSpeed>
+    <whiteBalance>Tungsten (warm indoor preset, fine-tuned in-camera)</whiteBalance>
+    <focus>Manual focus on shade and bulb/LED detail</focus>
+    <depthOfField>Moderate — complete lamp in crisp focus, room background gently blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Combination of fixture’s own warm glow and diffused side fill light</type>
+    <style>Even illumination that preserves true light color and minimizes harsh shadows</style>
+    <highlights>Natural highlights on metallic or glass parts, never blown out; visible filament/LED detail retained</highlights>
+    <shadows>Soft and directional, consistent with single light source and fill</shadows>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, lifestyle-appropriate interior</sceneType>
+    <location>Styled home interior (e.g., cozy living-room side table or modern bedroom nightstand)</location>
+    <walls>Neutral color</walls>
+    <decor>Minimal décor</decor>
+    <backgroundStyle>Clean, complementary, secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product must be visually centered and undistracted; lamp should be switched on to showcase light quality</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

@@ -7,3 +7,6 @@ python-dotenv
 psycopg2-binary
 openai
 pyngrok
+tqdm
+openpyxl
+oracledb

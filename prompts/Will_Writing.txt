@@ -1,0 +1,86 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Legal Services Document</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Document layout, paper texture, and any seals or signatures must remain visually consistent with the input image or provided reference.</notes>
+    </referenceImage>
+    <designVariants>Only show one per image; must exist on product</designVariants>
+    <modifications>Do not alter product features or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.0</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6</aperture>
+    <apertureNotes>Keeps entire document text legible</apertureNotes>
+    <shutterSpeed>1/60s</shutterSpeed>
+    <whiteBalance>Daylight (slightly warm)</whiteBalance>
+    <focus>Manual focus on the signature line or embossed seal of the will</focus>
+    <depthOfField>Moderate — main document in sharp focus, surrounding props softly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Softbox with warm bounce fill</type>
+    <style>Even illumination, minimal paper glare</style>
+    <direction>Soft, directional shadows consistent with a single desk lamp or light source</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, professional law office</sceneType>
+    <location>Polished mahogany desk in a well-lit law office</location>
+    <props>
+      <mainDocument>Partially signed will document centered</mainDocument>
+      <pen>Brass fountain pen</pen>
+      <seal>Wax seal stamp</seal>
+      <book>Subtle legal reference book</book>
+    </props>
+    <backgroundStyle>Clean, warm, complementary wood and neutral tones</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Document must be visually centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to document dimensions</scale>
+    <shadows>Soft and directional, consistent with single light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Modern, clean sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure document or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

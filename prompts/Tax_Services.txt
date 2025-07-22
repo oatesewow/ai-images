@@ -1,0 +1,83 @@
+<imageRequest>
+  <product>
+    <name>{email_subject}</name>
+    <category>Professional Service Representation</category>
+    <referenceImage>
+      <useAsPrimaryGuide>true</useAsPrimaryGuide>
+      <matchStructure>true</matchStructure>
+      <matchMaterial>true</matchMaterial>
+      <matchProportions>true</matchProportions>
+      <matchColor>true</matchColor>
+      <notes>Product shape, dimensions, texture, and color must remain visually consistent with the input image. Representation of service materials (folders, documents) must be accurate and not altered.</notes>
+    </referenceImage>
+    <colorVariants>Only show one brand-color folder or document set per image; must exist on product</colorVariants>
+    <modifications>Do not alter service representation or invent new elements</modifications>
+    <integrity>
+      <noFloatingObjects>true</noFloatingObjects>
+      <noUnrealisticReflections>true</noUnrealisticReflections>
+      <noInventedTextures>true</noInventedTextures>
+      <noInventedLogos>true</noInventedLogos>
+    </integrity>
+  </product>
+
+  <cameraSettings>
+    <model>Canon EOS R5</model>
+    <lens>35mm f/2.0</lens>
+    <ISO>100</ISO>
+    <aperture>f/5.6</aperture>
+    <shutterSpeed>1/60s (tripod-mounted)</shutterSpeed>
+    <whiteBalance>Daylight/5500K</whiteBalance>
+    <focus>Manual focus on primary paperwork or branded folder representing the service</focus>
+    <depthOfField>Moderate — main documents, calculator, and pen in sharp focus; office shelves softly blurred</depthOfField>
+  </cameraSettings>
+
+  <lighting>
+    <type>Dual softboxes</type>
+    <keyLight>One key</keyLight>
+    <fillLight>One fill</fillLight>
+    <style>Eliminate harsh shadows on paperwork</style>
+    <direction>Soft, directional, consistent with single light source</direction>
+    <highlights>Natural — never blown out</highlights>
+  </lighting>
+
+  <environment>
+    <sceneType>Realistic, professional office setting</sceneType>
+    <location>Tidy executive desk</location>
+    <props>Neatly stacked tax forms, slim laptop, calculator, fountain pen</props>
+    <background>Blurred law books or certificates</background>
+    <backgroundStyle>Clean, complementary, secondary to product</backgroundStyle>
+  </environment>
+
+  <composition>
+    <primaryFocus>Product (service materials) must be visually centered and undistracted</primaryFocus>
+    <realism>Photorealistic and natural</realism>
+    <scale>True to product dimensions</scale>
+    <shadows>Soft and directional, consistent with light source</shadows>
+  </composition>
+
+  <headline>
+    <text>{email_subject}</text>
+    <font>Clean, modern sans-serif</font>
+    <placement>Top-left or top-center only</placement>
+    <background>Minimalist or semi-transparent</background>
+    <padding>6px minimum</padding>
+    <style>Subtle, should not obscure product or distract from detail</style>
+  </headline>
+
+  <designConstraints>
+    <textRules>
+      <noTextInBottomRight>true</noTextInBottomRight>
+      <noCallouts>true</noCallouts>
+      <noPricing>true</noPricing>
+      <noBrandingUnlessProvided>true</noBrandingUnlessProvided>
+      <padding>4px minimum for any text elements</padding>
+    </textRules>
+    <accuracy>
+      <maintainExactProductShape>true</maintainExactProductShape>
+      <maintainMaterial>true</maintainMaterial>
+      <maintainColor>true</maintainColor>
+      <matchInputImage>true</matchInputImage>
+    </accuracy>
+    <spelling>Must be 100% correct</spelling>
+  </designConstraints>
+</imageRequest>

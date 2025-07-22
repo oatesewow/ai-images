@@ -1,0 +1,93 @@
+<imageRequest>
+  <metadata>
+    <title>{email_subject}</title>
+    <category>Motoring Experience</category>
+    <imageCount>1</imageCount>
+    <includeText>true</includeText>
+    <spellingErrors>none</spellingErrors>
+    <branding>
+      <allowBusinessLogo>true</allowBusinessLogo>
+      <noInventedLogos>true</noInventedLogos>
+    </branding>
+  </metadata>
+
+  <visualHeadline>
+    <includeHeadline>true</includeHeadline>
+    <source>Break the information in the title down into a headline for the graphic. Title: {email_subject}</source>
+    <placement>Top center or top third of the image</placement>
+    <font>
+      <style>Clean, modern sans-serif</style>
+      <weight>Bold</weight>
+      <size>Large, but not overpowering</size>
+      <color>White or light grey (high contrast, readable)</color>
+    </font>
+    <background>Optional subtle gradient or semi-transparent backing</background>
+    <designConstraints>
+      <noTextBottomRight>true</noTextBottomRight>
+      <noPricing>true</noPricing>
+      <noExtraIcons>true</noExtraIcons>
+    </designConstraints>
+  </visualHeadline>
+
+  <serviceRepresentation>
+    <primaryFocus>Supercar driving experience</primaryFocus>
+    <goal>Showcase excitement, adrenaline, and premium feel</goal>
+    <momentType>Decisive, high-action</momentType>
+    <trackEnvironment>Realistic open-air race track or airfield</trackEnvironment>
+  </serviceRepresentation>
+
+  <sceneAndBackground>
+    <setting>Premium race track or wide airstrip</setting>
+    <composition>
+      <backgroundPriority>Low</backgroundPriority>
+      <backgroundClutter>Minimal</backgroundClutter>
+    </composition>
+    <focus>On car and subject experience</focus>
+    <lighting>
+      <type>Natural daylight</type>
+      <style>Soft directional with balanced highlights and shadows</style>
+    </lighting>
+    <depthOfField>
+      <foreground>Sharp (car and subject)</foreground>
+      <background>Soft blur</background>
+    </depthOfField>
+  </sceneAndBackground>
+
+  <vehicleRendering>
+    <motionBlur>
+      <car>Sharp focus</car>
+      <background>Speed motion blur</background>
+    </motionBlur>
+    <vehicleModels>
+      <accuracy>Real-world models only</accuracy>
+      <exampleMakes>Lamborghini, Nissan GTR, Audi R8, McLaren, Mustang</exampleMakes>
+    </vehicleModels>
+    <details>
+      <paintReflections>Vivid and authentic</paintReflections>
+      <tireMotion>Visible and directional</tireMotion>
+    </details>
+  </vehicleRendering>
+
+  <cameraAndStyle>
+    <cameraModel>Canon EOS 5D Mark IV</cameraModel>
+    <lens>70–200mm f/2.8</lens>
+    <shutterSpeed>1/1600s</shutterSpeed>
+    <ISO>400</ISO>
+    <focus>Manual — focus on vehicle and subject</focus>
+    <profile>Adobe RGB</profile>
+    <style>Editorial automotive photojournalism</style>
+  </cameraAndStyle>
+
+  <designConstraints>
+    <textOnImage>true</textOnImage>
+    <bottomRightCorner>Must remain clear</bottomRightCorner>
+    <includePrice>false</includePrice>
+    <includeIcons>false</includeIcons>
+    <colorPalette>Strictly realistic</colorPalette>
+    <noFabrication>
+      <logos>true</logos>
+      <props>true</props>
+      <backgrounds>true</backgrounds>
+    </noFabrication>
+  </designConstraints>
+</imageRequest>
