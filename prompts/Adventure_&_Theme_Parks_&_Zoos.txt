@@ -1,0 +1,79 @@
+<PromotionalImageRequest>
+  <Title>Digital Animal Adoption with Entry to Port Lympne Reserve and Truck Safari for Two  - School Holiday Availability!</Title>
+
+  <Photography>
+    <Camera>Canon EOS 5D Mark IV</Camera>
+    <LensOptions>
+      <Lens>100mm f/4</Lens>
+      <Lens>70–200mm f/2.8</Lens>
+    </LensOptions>
+    <ShutterSpeed>1/1500s - 1/1600s</ShutterSpeed>
+    <ISO>200 - 400</ISO>
+    <ColorProfile>Adobe RGB</ColorProfile>
+    <Lighting>Natural lighting with high dynamic range</Lighting>
+    <Focus>
+      <Subject>Sharp</Subject>
+      <Background>Motion-blurred</Background>
+    </Focus>
+    <Composition>
+      <DepthOfField>Soft</DepthOfField>
+      <Angle>Dynamic</Angle>
+      <Reflections>Vivid paint and environmental reflections</Reflections>
+      <Motion>Tire motion or physical activity visible</Motion>
+    </Composition>
+  </Photography>
+
+  <Scene>
+    <Setting>
+      <Type>Outdoor</Type>
+      <Style>Premium, uncluttered, believable</Style>
+      <Lighting>Perfect natural daylight</Lighting>
+      <ValueReinforcement>true</ValueReinforcement>
+    </Setting>
+    <Background>
+      <Environment>Adventure rides, zoo areas, nature parks</Environment>
+      <Clarity>Secondary focus</Clarity>
+    </Background>
+  </Scene>
+
+  <Subjects>
+    <AgeRange>5-45</AgeRange>
+    <Attributes>
+      <HairColor>brown, blonde, black, ginger</HairColor>
+      <Height>4ft - 6ft</Height>
+      <Build>average</Build>
+    </Attributes>
+    <Diversity>Include children and adults where relevant</Diversity>
+    <Expressions>Natural facial expressions</Expressions>
+    <Clothing>Realistic, appropriate attire</Clothing>
+    <Activity>Show fun, engaging moment (e.g. on ride, feeding animal)</Activity>
+  </Subjects>
+
+  <ServiceRepresentation>
+    <CoreMessage>Capture decisive moment showing the deal's core selling point</CoreMessage>
+    <Elements>
+      <Rides>true</Rides>
+      <Animals>true</Animals>
+      <AdventureParks>true</AdventureParks>
+    </Elements>
+    <Props>Only accurate tools, uniforms, and equipment</Props>
+  </ServiceRepresentation>
+
+  <DesignConstraints>
+    <BottomRightCorner>Keep completely clear</BottomRightCorner>
+    <Exclude>
+      <Text>true</Text>
+      <Pricing>true</Pricing>
+      <Logos>false</Logos>
+      <Icons>true</Icons>
+    </Exclude>
+    <Logo>Include if business logo is supplied</Logo>
+    <ColorPalette>Strict realism</ColorPalette>
+  </DesignConstraints>
+
+  <Output>
+    <Resolution>High-resolution (DSLR quality)</Resolution>
+    <Style>Photo-realistic</Style>
+    <FileFormat>JPEG, PNG</FileFormat>
+  </Output>
+</PromotionalImageRequest>

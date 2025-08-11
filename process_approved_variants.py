@@ -122,7 +122,6 @@ def process_single_approved_variant(args):
         
         # Skip if no variant URL
         if pd.isna(variant_s3_url):
-            print(f"Skipping row {index}: No variant URL")
             return index, None, None, None, False
         
         # Process the approved variant using the new Oracle workflow
@@ -142,8 +141,6 @@ def process_approved_variants_with_oracle(df):
     """
     Process approved variants using the new Oracle workflow
     """
-    print("Processing approved variants with Oracle...")
-    
     try:
         # Connect to S3
         s3_client = boto3.client('s3', **AWS_CONFIG)
@@ -401,12 +398,10 @@ def copy_existing_s3_files(s3_client, bucket_name, deal_id, original_image_id, n
             if original_pattern in key:
                 # Skip if this is a variant file (contains the 5-zero pattern)
                 if variant_pattern in key:
-                    print(f"Skipping 5-zero variant file: {key}")
                     continue
                 
                 # Skip if this is a variant file (contains "_variant" in filename)
                 if "_variant" in key:
-                    print(f"Skipping _variant file: {key}")
                     continue
                 
                 # Create new key by replacing original image ID with new image ID
@@ -429,8 +424,6 @@ def copy_existing_s3_files(s3_client, bucket_name, deal_id, original_image_id, n
                     'original': f"https://{bucket_name}/{key}",
                     'new': f"https://{bucket_name}/{new_key}"
                 })
-                
-                print(f"Copied: {key} -> {new_key}")
         
         return copied_files
         
@@ -514,8 +507,6 @@ def insert_base_oracle_records(deal_id, original_image_id, new_image_id):
         child_count = cursor.fetchone()[0]
         
         if child_count > 0:
-            print(f"Found {child_count} child records in DEAL_VOUCHER_PRODUCT_IMAGE for image ID {original_image_id}")
-            
             # Update child records to reference the new image ID (now the parent exists)
             cursor.execute("""
                 UPDATE DEAL_VOUCHER_PRODUCT_IMAGE 
@@ -525,8 +516,6 @@ def insert_base_oracle_records(deal_id, original_image_id, new_image_id):
                 "newImageId": new_image_id,
                 "originalImageId": original_image_id
             })
-            
-            print(f"✅ Updated {child_count} child records to reference new image ID {new_image_id}")
         
         # STEP 3: Finally, delete the old parent records (now safe since child records point to new parent)
         cursor.execute("""
@@ -538,10 +527,6 @@ def insert_base_oracle_records(deal_id, original_image_id, new_image_id):
         })
         
         connection.commit()
-        
-        print(f"✅ Replaced {len(existing_records)} Oracle records with new ID {new_image_id}, keeping original positions")
-        if child_count > 0:
-            print(f"✅ Also updated {child_count} DEAL_VOUCHER_PRODUCT_IMAGE references")
         
         return True
         
@@ -603,8 +588,6 @@ def copy_variant_to_s3(deal_id, new_image_id, variant_s3_url, s3_client, bucket_
         )
         
         final_variant_url = f"https://{bucket_name}/{new_variant_key}"
-        print(f"✅ Successfully copied variant to S3 for deal {deal_id}: {final_variant_url}")
-        print(f"   (Variant ID {variant_image_id} exists only in S3, not in Oracle)")
         
         return {
             'variant_image_id': variant_image_id,
@@ -630,15 +613,11 @@ def process_approved_variant(deal_id, original_image_id, variant_s3_url, s3_clie
     4. Copy variant image to new_image_id * 100000 pattern (S3 only)
     """
     try:
-        print(f"Processing approved variant for deal {deal_id}...")
-        
         # Step 1: Get new Oracle image ID
         new_image_id = get_new_oracle_image_id()
-        print(f"Got new Oracle image ID: {new_image_id}")
         
         # Step 2: Copy existing files from original to new image ID
         copied_files = copy_existing_s3_files(s3_client, bucket_name, deal_id, original_image_id, new_image_id)
-        print(f"Copied {len(copied_files)} existing files")
         
         # Step 3: Insert base Oracle records with new image ID
         base_oracle_success = insert_base_oracle_records(deal_id, original_image_id, new_image_id)

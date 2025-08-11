@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head><title>Pending Reviews</title></head>
+<body>
+<h1>Pending Reviews</h1>
+{% if rows %}
+<table border="1" cellpadding="6" cellspacing="0">
+<tr><th>ID</th><th>Deal</th><th>Original</th><th>Variant</th><th>Prompt</th><th>Actions</th></tr>
+{% for r in rows %}
+<tr>
+<td>{{ r.id }}</td>
+<td>{{ r.deal_voucher_id }}</td>
+<td><a href="{{ r.original_url }}" target="_blank">original</a></td>
+<td><a href="{{ r.variant_s3_url }}" target="_blank">variant</a></td>
+<td><details><summary>{{ r.prompt_source }}</summary><pre style="max-width:480px; white-space:pre-wrap;">{{ r.prompt }}</pre></details></td>
+<td>
+<form method="post" action="{{ url_for("approval.decision") }}">
+<input type="hidden" name="id" value="{{ r.id }}" />
+<input type="text" name="reviewer" placeholder="Your name" />
+<input type="text" name="notes" placeholder="Notes" />
+<button name="action" value="approve">Approve</button>
+<button name="action" value="reject">Reject</button>
+</form>
+</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No pending rows.</p>
+{% endif %}
+<p><a href="/dashboard">Dashboard</a></p>
+</body>
+</html>

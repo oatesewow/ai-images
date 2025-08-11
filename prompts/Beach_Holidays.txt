@@ -1,0 +1,65 @@
+<photoPrompt>
+  <camera>
+    <model>Canon EOS 5D Mark IV</model>
+    <lens>85mm f/1.8</lens>
+    <iso>100</iso>
+    <aperture>f/1.8</aperture>
+    <style>professional travel influencer photography</style>
+    <lighting>natural light — golden hour or bright midday sun, or ambient dusk depending on whats appropriate.</lighting>
+  </camera>
+
+  <subject>{subject}</subject>
+
+  <scene>
+    <location>{email_subject}</location>
+    <backdrop>recognisable or breathtaking view — e.g., choose one of the provided images of a landmark, beach, mountains, cityscape, or countryside. Do not merge them</backdrop>
+    <realism>true</realism>
+    <elements>
+      <element>local architecture or nature</element>
+      <element>environment appropriate to the destination</element>
+    </elements>
+  </scene>
+
+  <imageComposition>
+    <framing>subject in foreground or mid-ground with depth and scenic context</framing>
+    <focus>shallow depth of field with natural background blur</focus>
+    <colorPalette>natural and warm</colorPalette>
+    <resolution>high</resolution>
+    <styleKeywords>
+      <keyword>aspirational</keyword>
+      <keyword>wanderlust</keyword>
+      <keyword>authentic</keyword>
+      <keyword>lifestyle</keyword>
+      <keyword>editorial travel</keyword>
+      <keyword>quiet luxury</keyword>
+    </styleKeywords>
+  </imageComposition>
+
+  <textOverlay>
+    <position>top 20% of image only</position>
+    <style>
+      <font>Bold Arial</font>
+      <contrast>high contrast with background</contrast>
+      <padding>4px minimum around all text</padding>
+    </style>
+    <content>
+      <headline>Condensed, slightly differently worded version of: {email_subject}</headline>
+      <rules>
+        <noFullProductName>true</noFullProductName>
+        <noLogos>true</noLogos>
+        <noPricing>true</noPricing>
+        <noSpellingErrors>true</noSpellingErrors>
+      </rules>
+    </content>
+  </textOverlay>
+
+  <generationConstraints>
+    <avoidTextInBottomRight>true</avoidTextInBottomRight>
+    <noSurrealComposites>true</noSurrealComposites>
+    <noUnrealisticLighting>true</noUnrealisticLighting>
+    <noFabricatedArchitecture>true</noFabricatedArchitecture>
+    <realSkinTonesAndShadows>true</realSkinTonesAndShadows>
+    <noStiffPosing>true</noStiffPosing>
+    <avoidStockImageLook>true</avoidStockImageLook>
+  </generationConstraints>
+</photoPrompt>

@@ -231,7 +231,7 @@ def upload_variants_to_s3(variant_files, deal_id, new_image_id):
             
             final_url = f"https://{bucket_name}/{new_key}"
             uploaded_urls[suffix] = final_url
-            print(f"✅ Uploaded variant: {new_image_id}{suffix}.jpg")
+            #print(f"✅ Uploaded variant: {new_image_id}{suffix}.jpg")
         
         return uploaded_urls
         
@@ -740,4 +740,4 @@ if __name__ == "__main__":
     if result['success']:
         print("Image replacement completed successfully!")
     else:
-        print(f"Image replacement failed: {result['error']}") 
+        print(f"Image replacement failed: {result['error']}")

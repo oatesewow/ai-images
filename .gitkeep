@@ -1,0 +1,20 @@
+Flask app for AI image generation and approvals
+================================================
+
+Overview
+--------
+This app replaces the CSV approval loop by storing generated variants in Redshift (`temp.image_to_approve`) and exposing a simple UI for reviewers to approve/reject. Once approved, the app triggers the existing Oracle/S3 workflow.
+
+Main features
+-------------
+- Run generation jobs based on Redshift queries and file-based prompts
+- Store variants + prompts + metadata in `temp.image_to_approve`
+- Review UI: list/paginate, preview original vs variant, approve/reject, add notes
+- Background job to process approvals via your `process_approved_variants.py` flow
+
+Setup
+-----
+1. Create and fill your `.env` with keys: REDSHIFT_*, AWS_*, ORACLE_*, OPEN_AI_API_KEY, API_SECRET, FLASK_SECRET_KEY
+2. pip install -r requirements.txt
+3. flask --app flask_app.app run (or `python -m flask_app.app`)
+

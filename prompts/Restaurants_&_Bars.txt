@@ -1,0 +1,60 @@
+<imagePrompt>
+  <title>High-Resolution Promotional Image for {email_subject}</title>
+
+  <goal>
+    Create a photo-realistic, high-resolution image that captures the essence of the restaurant or bar deal — with food and drink at the centre, supported by an aspirational yet believable restaurant setting.
+  </goal>
+
+  <cameraSettings>
+    <cameraModel>Canon EOS 5D Mark IV</cameraModel>
+    <lens>16–35mm wide angle</lens>
+    <aperture>f/4.0</aperture>
+    <shutterSpeed>1/125s</shutterSpeed>
+    <iso>100</iso>
+    <whiteBalance>Daylight</whiteBalance>
+    <focus>Manual focus on frontmost dish or plating</focus>
+    <depthOfField>Shallow to moderate — foreground crisp, background softened</depthOfField>
+    <style>Modern restaurant editorial food photography</style>
+  </cameraSettings>
+
+  <lighting>
+    <type>Natural daylight with softbox fill</type>
+    <mood>Bright and appetising</mood>
+    <notes>Lighting should be warm and inviting, never harsh. Use soft fill to reveal food surface detail and natural shadows. Ensure shine on glazes, moist textures, and drink clarity appears natural, not exaggerated.</notes>
+  </lighting>
+
+  <composition>
+    <primaryFocus>Food and drink that are part of the deal</primaryFocus>
+    <angle>Eye-level or slight top-down angle (30–45°) for plating visibility</angle>
+    <background>Restaurant or bar interior — premium but not distracting</background>
+    <props>Only use utensils, glassware, and furniture appropriate to the actual restaurant/bar setting</props>
+    <textureFocus>Highlight crisp edges, glossy surfaces, moist interiors, and realistic portion sizing</textureFocus>
+    <realism>
+      Strict realism. No floating food, exaggerated steam, glowing elements, or invented items. Dishes must appear as they would be served in a real restaurant.
+    </realism>
+  </composition>
+
+  <people>
+    <include>false</include>
+    <note>Do not include any people in the image — no diners, staff, or hands. Focus remains on the offering itself.</note>
+  </people>
+
+  <scene>
+    <location>Indoor restaurant, bar, or terrace with visual clarity</location>
+    <environmentStyle>Contemporary, clean, aspirational but grounded in realism</environmentStyle>
+    <backgroundBlur>Soft — should not distract but clearly suggest restaurant atmosphere</backgroundBlur>
+  </scene>
+
+  <designConstraints>
+    <textOnImage>false</textOnImage>
+    <logoInclusion>Only if explicitly supplied</logoInclusion>
+    <pricingOnImage>false</pricingOnImage>
+    <bottomRightClear>true</bottomRightClear>
+    <colorPalette>True-to-life color grading — warm and appetising tones prioritised</colorPalette>
+  </designConstraints>
+
+  <renderingHints>
+    <modelStyle>Trained on real editorial food photography</modelStyle>
+    <detailPriority>Food surface texture, realistic moisture, ingredient accuracy, depth shadows</detailPriority>
+  </renderingHints>
+</imagePrompt>
