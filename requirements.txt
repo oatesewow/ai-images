@@ -3,12 +3,3 @@ pandas
 pillow
 requests
 numpy
-python-dotenv
-psycopg2-binary==2.9.10
-openai
-pyngrok
-tqdm
-openpyxl
-oracledb
-
-Flask==3.0.3

@@ -1,0 +1,12 @@
+Flask==3.0.3
+python-dotenv
+psycopg2-binary==2.9.10
+openai
+boto3
+requests
+pandas
+numpy
+openpyxl
+oracledb
+gunicorn
+

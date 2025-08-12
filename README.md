@@ -55,7 +55,20 @@ Review results will be saved to the CSV with additional columns:
 
 ## Deployment
 
-For deployment instructions, see [Streamlit Cloud Deployment Guide](streamlit_cloud_deploy_instructions.md).
+### Streamlit Cloud
+
+Use the minimal dependencies in `requirements.txt` (Streamlit + data libs only) and deploy `review_interface.py`.
+
+### Flask Service
+
+Run the Flask app locally or on a server with the extra dependencies in `requirements-flask.txt`:
+
+```bash
+pip install -r requirements-flask.txt
+python -m flask_app.app
+```
+
+For Streamlit Cloud specifics, see [Streamlit Cloud Deployment Guide](streamlit_cloud_deploy_instructions.md).
 
 ## License
 
